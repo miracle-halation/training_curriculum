@@ -31,11 +31,10 @@ class CalendarsController < ApplicationController
 
     7.times do |x|
       plans = []
-      day_after = @todays_date + x
       plan = @plans.map do |plan|
-        plans.push(plan.plan) if plan.date == day_after
+        plans.push(plan.plan) if plan.date == @todays_date + x
       end
-      days = { month: day_after.month, date: day_after.day, plans: plans, wday: wdays[day_after.wday]}
+      days = { month: (@todays_date + x).month, date: (@todays_date + x).day, plans: plans, wday: wdays[(@todays_date + x).wday]}
       @week_days.push(days)
     end
 
